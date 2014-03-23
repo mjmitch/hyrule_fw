@@ -1,5 +1,5 @@
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media/')
 STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static/')
@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'players',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -35,20 +36,28 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'hyrule_fw.urls'
+ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'hyrule_fw.wsgi.application'
+from django.core.handlers.wsgi import WSGIHandler
+application = WSGIHandler()
 
 # Database
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'hyrule_fw',
+#         'USER': 'hyrule_fw',
+#         'PASSWORD': 'this_password_sucks',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hyrule_fw',
-        'USER': 'hyrule_fw',
-        'PASSWORD': 'this_password_sucks',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'hyrule_fw.sqlite',
     }
 }
 
