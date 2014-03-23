@@ -68,9 +68,11 @@ class Attribute(models.Model):
     value = models.CharField(max_length=4, help_text='Include the % sign if it is a percent (Crit chance, for example)')
     gear_item = models.ForeignKey(GearItem)
 
+
 class BaseAttribute(Attribute):
     class Meta:
         verbose_name = "Base Attribute"
+
 
 class AdditionalAttribute(Attribute):
     class Meta:
