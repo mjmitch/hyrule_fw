@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/media/static/styles/players.less" type="text/less">
+{% endblock styles %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="/media/static/scripts/players.js"></script>
+{% endblock scripts %}
+
+{% block overrides %}
+{% endblock overrides %}
+
+<!-- start content -->
+
+{% block content %}
+    <div id='players-content'>
+        {% block players-content %}
+        {% endblock players-content %}
+    </div>
+{% endblock content %}
+
+<!-- end content -->

@@ -4,8 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media/')
 STATIC_ROOT = os.path.join(MEDIA_ROOT, 'static/')
 
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATIC_URL = MEDIA_URL+'static/'
 
 SECRET_KEY = 'e%8^yha!eyxen3@pxoi@ve9s6+6vq(qh)(h6p61ecj0^&s7@43'
 
