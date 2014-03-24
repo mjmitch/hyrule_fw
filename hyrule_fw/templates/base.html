@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block styles %}
+            <link rel="stylesheet/less" href="/media/styles/style.less" type="text/css">
+        {% endblock styles %}
+
+        {% block scripts %}
+        {% endblock scripts %}
+
+        {% block overrides %}
+        {% endblock overrides %}
+
+        <script>
+            less = {
+                env: "development",
+                async: false,
+                fileAsync: false,
+                poll: 1000,
+                functions: {},
+                dumpLineNumbers: "comments",
+                relativeUrls: false,
+                rootpath: ":/a.com/"
+            };
+        </script>
+        <script src="/media/scripts/less.js"></script>
+    </head>
+<!-- start content -->
+    <body>
+        <div id="header">
+            {% block header %}
+            {% endblock header %}
+        </div>
+        <div id="top-nav">
+            {% block top-nav %}
+            {% endblock top-nav %}
+        </div>
+        <div id="side-nav">
+            {% block side-nav %}
+            {% endblock side-nav %}
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div id="footer">
+            {% block footer %}
+            {% endblock footer %}
+        </div>
+    </body>
+</html>

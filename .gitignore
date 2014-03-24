@@ -3,3 +3,6 @@
 *~
 *.pyc
 *.exe
+media/*
+!media/styles
+!media/scripts
