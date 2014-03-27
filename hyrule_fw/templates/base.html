@@ -1,11 +1,31 @@
 <!DOCTYPE html>
+{# load menu_tags misc_tags #}
 <html>
     <head>
         {% block styles %}
+            <link rel="stylesheet" href="/media/styles/base_style.css" type="text/css">
             <link rel="stylesheet/less" href="/media/styles/style.less" type="text/css">
         {% endblock styles %}
 
         {% block scripts %}
+            <script>
+                $(document).ready(function() {
+                    $(".drop-down").click(function() {
+                        $sub = $(this).children(".sub-menu");
+                        if($sub.css("display") === "none") {
+                            $sub.slideDown(slow, function() {
+                                $sub.attr("pause", "false");
+                            });
+                            $sub.attr("pause", "true");
+                        } else if($sub.attr("pause") != "true") {
+                            $sub.slideUp(slow, function() {
+                                $sub.attr("pause", "false");
+                            });
+                            $sub.attr("pause", "true");
+                        }
+                    });
+                });
+            </script>
         {% endblock scripts %}
 
         {% block overrides %}
@@ -20,7 +40,7 @@
                 functions: {},
                 dumpLineNumbers: "comments",
                 relativeUrls: false,
-                rootpath: ":/a.com/"
+                rootpath: "/"
             };
         </script>
         <script src="/media/scripts/less.js"></script>
@@ -29,23 +49,72 @@
     <body>
         <div id="header">
             {% block header %}
+                <div id="logo" class="center-content">
+                    <a href="/">
+                        <img class="responsive" src="/media/styles/images/logo.jpg">
+                    </a>
+                </div>
+                <div id="top-span">
+                    {% block top-span %}
+                        <div class="left">
+                            <a href="/">Hyrule</a>
+                            {% if user.is_authenticated %}
+                                <a id="applicants-link" href="/players/applicants/"></a>
+                            {% endif %}
+                        </div>
+                        <div class="right">
+                            {% if user.is_authenticated %}
+                                <div id="profile-link" class="drop-down">
+                                    {{ user.name }}
+                                    <ul class="sub-menu">
+                                        <li class="menu-item">
+                                            <img src="/media/styles/images/profile.png">
+                                            <a href="/players/player/{{ user.id }}">My Profile</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <img src="/media/styles/images/settings.png">
+                                            <a href="/players/player/{{ user.id }}/settings/">User Settings</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <img src="/media/styles/images/login-logout.png">
+                                            <a href="/accounts/logout/?next=/">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a id="messages" href="/players/player/{{ user.id }}/messages/">
+                                    <img src="/media/styles/images/messages.png">
+                                </a>
+                                <a id="online-users" href="#">{# get_online_users #}</a>
+                            {% else %}
+                                <a href="/accounts/login/">Login</a>
+                            {% endif %}
+                        </div>
+                    {% endblock top-span %}
+                </div>
             {% endblock header %}
         </div>
-        <div id="top-nav">
-            {% block top-nav %}
-            {% endblock top-nav %}
-        </div>
-        <div id="side-nav">
-            {% block side-nav %}
-            {% endblock side-nav %}
-        </div>
-        <div id="content">
-            {% block content %}
-            {% endblock content %}
-        </div>
-        <div id="footer">
-            {% block footer %}
-            {% endblock footer %}
+        <div class="container">
+            <div id="top-nav" class="wrapper">
+                {% block top-nav %}
+                    {# menu "top-nav" #}
+                {% endblock top-nav %}
+            </div>
+            <div id="side-nav">
+                {% block side-nav %}
+                    {# menu "side-nav" #}
+                {% endblock side-nav %}
+            </div>
+            <div id="content">
+                {% block content %}
+                {% endblock content %}
+            </div>
+            <div id="footer">
+                {% block footer %}
+                    {# menu "footer" #}
+                    <div class="clear"></div>
+                    {# insert_flatpage_content "/footer/" #}
+                {% endblock footer %}
+            </div>
         </div>
     </body>
 </html>

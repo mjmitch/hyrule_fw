@@ -1,5 +1,6 @@
 .idea/*
-*.sqlite3
+*.sql*
+*.sql
 *~
 *.pyc
 *.exe
