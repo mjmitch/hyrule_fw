@@ -57,7 +57,7 @@ application = WSGIHandler()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'hyrule_fw.sqlite',
+        'NAME': 'hyrule_fw.sqlite3',
     }
 }
 
