@@ -13,7 +13,11 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hyrule-fw.com']
+
+SITE_ID = 1
+SITE_NAME = 'Hyrule-FW'
+
 
 # Application definition
 
@@ -24,6 +28,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'players',
 )
 
@@ -34,6 +40,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -60,6 +67,10 @@ DATABASES = {
         'NAME': 'hyrule_fw.sqlite3',
     }
 }
+
+TEMPLATE_DIRS = (
+    'templates/',
+)
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'EST'
