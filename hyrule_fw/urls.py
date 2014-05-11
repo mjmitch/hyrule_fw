@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-
 from players import urls as PLAYER_URLS
 
 urlpatterns = patterns('',
